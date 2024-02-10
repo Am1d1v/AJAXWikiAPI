@@ -12,11 +12,29 @@ btn.addEventListener('click', async() => {
     const fetchData = await fetch(url);
     const JSONData = await fetchData.json();
     
-    search(JSONData);
+    search(JSONData.query.search);
 });
 
 // Make a search request
 function search(data){
-    console.log(data.query.search);
+    output.innerHTML = '<h3>Results for: </h3>';
+
+    data.forEach((dataItem) => {
+        console.log(dataItem);
+
+        // inner content
+        const div = document.createElement('div');
+        div.innerHTML += `<a href='https://en.wikipedia.org/wiki?curid=${dataItem.pageid}'>
+                            <h4>${dataItem.title}</h4>
+                         </a>`;
+        div.innerHTML += `<span>${dataItem.snippet}</span>`;
+
+        // add class for style
+        div.classList.add('box');
+
+        output.appendChild(div);
+    });
+
+    
 }
 
