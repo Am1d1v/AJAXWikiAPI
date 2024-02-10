@@ -23,10 +23,9 @@ btn.addEventListener('click', async() => {
 
 // Make a search request
 function search(data){
-    output.innerHTML = '<h3>Results for: </h3>';
+    output.innerHTML = `<h3>Results for: ${inputVal.value || 'Wiki'}</h3>`;
 
     data.forEach((dataItem) => {
-        console.log(dataItem);
 
         // inner content
         const div = document.createElement('div');
