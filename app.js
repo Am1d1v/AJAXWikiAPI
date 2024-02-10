@@ -1,15 +1,21 @@
 
 
-const url = 'https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&origin=*&srsearch=javascript';
+const url = 'https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&origin=*&srsearch=';
 const btn = document.querySelector('.btn');
 const output = document.querySelector('.output')
 const inputVal = document.querySelector('.val');
 
 
 //Event Listeners
+
+
+
 //Fetch Data
 btn.addEventListener('click', async() => {
-    const fetchData = await fetch(url);
+
+    let searchTerm = inputVal.value || 'Wiki';
+
+    const fetchData = await fetch(url + searchTerm);
     const JSONData = await fetchData.json();
     
     search(JSONData.query.search);
